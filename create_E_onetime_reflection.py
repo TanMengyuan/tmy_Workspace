@@ -1,6 +1,3 @@
-#   2019.01.16 FOV的问题需要处理，需要排除掉接收的角度大于FOV的光线传入接收器。 Done
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D

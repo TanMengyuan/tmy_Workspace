@@ -1,6 +1,3 @@
-#   2019.02.28 计算Hn时用的辐射角的值等于倾斜角
-#              LED高度2.5m
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
