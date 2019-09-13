@@ -1,5 +1,3 @@
-# 2019.03.01 噪声数据只包括shot和thermal噪声
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D

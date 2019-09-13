@@ -1,10 +1,3 @@
-# 2018.12.04 123行需要解决逐个进行与运算的问题
-# 2018.12.11 在有墙隔着的时候要考虑灯照射的盲区
-# 2018.12.25 原始数据可能有个转置方面的问题
-#
-#
-#
-
 import sys, getopt
 import numpy as np
 import matplotlib.pyplot as plt

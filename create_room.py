@@ -1,5 +1,3 @@
-# make a series of .npy data which can show the different shape of the room
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
