@@ -52,33 +52,33 @@ for i in range(len(xt)):
         Hn[tetha_irr > FOV] = 0
         adding = np.zeros((50, 50))
 
-        # for x in [0 + 0.25, 5 - 0.25]:
-        #     for y in np.linspace(0 + 0.25, 5 - 0.25, 10):
-        #         for z in np.linspace(REC_HEIGHT + 0.1075, dimZ - 0.1075, 10):
-        #             d1 = np.sqrt(np.square(x - xt[i]) + np.square(y - yt[j]) + np.square(z - dimZ))
-        #             d2 = np.sqrt(np.square(xr - x) + np.square(yr - y) + np.square(z))
-        #             gamma1 = np.arcsin((dimZ - z) / d1)
-        #             gamma2 = np.arcsin(z / d2)
-        #             tetha_R = (np.pi / 2) - gamma2
-        #             tmp = (((m + 1) * Ar) / (2 * (np.pi ** 2) * (d1 ** 2) * (d2 ** 2))) * \
-        #                   Rho * d_wall * (np.cos(tetha) ** m) * np.cos(gamma1) * np.cos(gamma2) * \
-        #                   (np.square(n) / (np.square(np.sin(FOV)))) * np.cos(tetha_R)
-        #             tmp[tetha_R > FOV] = 0
-        #             adding += tmp
-        #
-        # for y in [0 + 0.25, 5 - 0.25]:
-        #     for x in np.linspace(0 + 0.25, 5 - 0.25, 10):
-        #         for z in np.linspace(REC_HEIGHT + 0.1075, dimZ - 0.1075, 10):
-        #             d1 = np.sqrt(np.square(x - xt[i]) + np.square(y - yt[j]) + np.square(z - dimZ))
-        #             d2 = np.sqrt(np.square(xr - x) + np.square(yr - y) + np.square(z))
-        #             gamma1 = np.arcsin((dimZ - z) / d1)
-        #             gamma2 = np.arcsin(z / d2)
-        #             tetha_R = (np.pi / 2) - gamma2
-        #             tmp = (((m + 1) * Ar) / (2 * (np.pi ** 2) * (d1 ** 2) * (d2 ** 2))) * \
-        #                   Rho * d_wall * (np.cos(tetha) ** m) * np.cos(gamma1) * np.cos(gamma2) * \
-        #                   (np.square(n) / (np.square(np.sin(FOV)))) * np.cos(tetha_R)
-        #             tmp[tetha_R > FOV] = 0
-        #             adding += tmp
+        for x in [0 + 0.25, 5 - 0.25]:
+            for y in np.linspace(0 + 0.25, 5 - 0.25, 10):
+                for z in np.linspace(REC_HEIGHT + 0.1075, dimZ - 0.1075, 10):
+                    d1 = np.sqrt(np.square(x - xt[i]) + np.square(y - yt[j]) + np.square(z - dimZ))
+                    d2 = np.sqrt(np.square(xr - x) + np.square(yr - y) + np.square(z))
+                    gamma1 = np.arcsin((dimZ - z) / d1)
+                    gamma2 = np.arcsin(z / d2)
+                    tetha_R = (np.pi / 2) - gamma2
+                    tmp = (((m + 1) * Ar) / (2 * (np.pi ** 2) * (d1 ** 2) * (d2 ** 2))) * \
+                          Rho * d_wall * (np.cos(tetha) ** m) * np.cos(gamma1) * np.cos(gamma2) * \
+                          (np.square(n) / (np.square(np.sin(FOV)))) * np.cos(tetha_R)
+                    tmp[tetha_R > FOV] = 0
+                    adding += tmp
+
+        for y in [0 + 0.25, 5 - 0.25]:
+            for x in np.linspace(0 + 0.25, 5 - 0.25, 10):
+                for z in np.linspace(REC_HEIGHT + 0.1075, dimZ - 0.1075, 10):
+                    d1 = np.sqrt(np.square(x - xt[i]) + np.square(y - yt[j]) + np.square(z - dimZ))
+                    d2 = np.sqrt(np.square(xr - x) + np.square(yr - y) + np.square(z))
+                    gamma1 = np.arcsin((dimZ - z) / d1)
+                    gamma2 = np.arcsin(z / d2)
+                    tetha_R = (np.pi / 2) - gamma2
+                    tmp = (((m + 1) * Ar) / (2 * (np.pi ** 2) * (d1 ** 2) * (d2 ** 2))) * \
+                          Rho * d_wall * (np.cos(tetha) ** m) * np.cos(gamma1) * np.cos(gamma2) * \
+                          (np.square(n) / (np.square(np.sin(FOV)))) * np.cos(tetha_R)
+                    tmp[tetha_R > FOV] = 0
+                    adding += tmp
 
         # Testing part
         # if i == 2 and j == 2:
