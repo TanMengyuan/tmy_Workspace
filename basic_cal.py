@@ -1,3 +1,9 @@
+"""
+@version: python3.7
+@author: ‘mengyuantan‘
+@contact: tanmy1016@126.com
+@desc: basic program of calculate the E
+"""
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt

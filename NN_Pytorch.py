@@ -1,3 +1,9 @@
+"""
+@version: python3.7
+@author: ‘mengyuantan‘
+@contact: tanmy1016@126.com
+@desc:
+"""
 import numpy as np
 import torch
 from torch import nn, optim

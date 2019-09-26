@@ -1,3 +1,9 @@
+"""
+@version: python3.7
+@author: ‘mengyuantan‘
+@contact: tanmy1016@126.com
+@desc:
+"""
 import numpy as np
 import tensorflow as tf
 import os, re, random

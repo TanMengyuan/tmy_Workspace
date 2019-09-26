@@ -1,3 +1,9 @@
+"""
+@version: python3.7
+@author: ‘mengyuantan‘
+@contact: tanmy1016@126.com
+@desc: verify the point of Q below 1e-6
+"""
 from scipy.special import erf, erfc
 import numpy as np
 

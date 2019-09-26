@@ -1,3 +1,9 @@
+"""
+@version: python3.7
+@author: ‘mengyuantan‘
+@contact: tanmy1016@126.com
+@desc: batch create the room with different shape
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
