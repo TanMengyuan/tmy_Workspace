@@ -2,11 +2,14 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Use Neural Networks with Tensorflow
 """
+import os
+import random
+import re
+
 import numpy as np
 import tensorflow as tf
-import os, re, random
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 

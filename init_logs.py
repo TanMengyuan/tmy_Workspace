@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: initialize the counter
 """
 import numpy as np
 

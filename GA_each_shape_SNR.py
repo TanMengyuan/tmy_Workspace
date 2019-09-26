@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Consider the SNR of genetic algorithm
 """
 import sys, getopt
 import numpy as np

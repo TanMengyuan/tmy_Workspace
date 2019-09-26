@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Consider the windows of room in GA process
 """
 import sys, getopt
 import numpy as np

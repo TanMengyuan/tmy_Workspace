@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Check data
 """
 import sys, getopt
 import numpy as np

@@ -2,17 +2,18 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Use Neural Networks with Pytorch
 """
-import numpy as np
-import torch
-from torch import nn, optim
-import torch.utils.data as Data
-import os, re, random
-import matplotlib.pyplot as plt
-import pandas as pd
+import os
+import re
 import time
 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import torch
+import torch.utils.data as Data
+from torch import nn
 
 # Set parameters
 EPOCH = 10000

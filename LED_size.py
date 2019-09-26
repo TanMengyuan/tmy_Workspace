@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Try to find the relationship between the LED size and the impulse response
 """
 import numpy as np
 import matplotlib.pyplot as plt
