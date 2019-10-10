@@ -226,7 +226,7 @@ def plotting(DNA, id_num):
 
 dna = np.zeros((1, 100))
 # dna = np.ones((1, 100))
-d = 2
+d = 1
 nd = 9 - d
 dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
 # li = [27, 42, 75]
