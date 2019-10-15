@@ -35,6 +35,7 @@ first_arrive = t_arrive[0][0]
 start_zero = np.zeros(200)
 for k, v in t_arrive:
     start_zero[int((k - first_arrive) // dt) + 1] += v
+# print(start_zero)
 plt.plot(t_array, start_zero / np.max(start_zero))
 plt.xlabel('Propagation Delay Time [ns]')
 plt.ylabel('Normalized Impulse Response')

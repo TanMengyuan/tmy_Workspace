@@ -2,7 +2,7 @@
 @version: python3.7
 @author: ‘mengyuantan‘
 @contact: tanmy1016@126.com
-@desc:
+@desc: Show the figure of Hn
 """
 import numpy as np
 import matplotlib.pyplot as plt
