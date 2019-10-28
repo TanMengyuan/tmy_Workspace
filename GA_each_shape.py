@@ -143,8 +143,7 @@ def LED_fun(cur, tar): return np.abs(cur - tar)
 def Ilu_fun(cur, tar): return np.abs(cur - tar)
 
 
-def get_common(loc):
-    return np.argsort(np.bincount(loc))[::-1][:led_num]
+def get_common(loc): return np.argsort(np.bincount(loc))[::-1][:led_num]
 
 
 def F(source):  # source shape [-1, 100]

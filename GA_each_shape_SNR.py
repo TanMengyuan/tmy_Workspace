@@ -150,8 +150,7 @@ def cal_effect_zone(arr): return len(arr[arr >= 13.6]) / (room_area * 25)
 def LED_fun(cur, tar): return np.abs(cur - tar)
 
 
-def get_common(loc):
-    return np.argsort(np.bincount(loc))[::-1][:led_num]
+def get_common(loc): return np.argsort(np.bincount(loc))[::-1][:led_num]
 
 
 def F(source):  # source shape [-1, 100]
