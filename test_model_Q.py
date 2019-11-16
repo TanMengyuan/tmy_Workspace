@@ -215,6 +215,5 @@ li = [27, 42, 75]
 # li = [21, 71, 27, 77]
 for each in li:
     dna[0][each] = 1
-# id_num = np.load('room_result_SNR/log.npy')
 id_num = 13
 plotting(dna, id_num)

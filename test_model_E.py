@@ -26,8 +26,6 @@ xr, yr = np.meshgrid(x, y)
 E_value_data = np.array([])
 for i in range(ROOM_SIZE[0]):
     for j in range(ROOM_SIZE[1]):
-        # E_value_data = np.append(E_value_data,
-        #                          np.load(r'E_value_data/E_value_%s.npy' % (str(i) + str(j))))
         E_value_data = np.append(E_value_data,
                                  np.load(r'E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j))))
 E_value_data = E_value_data.reshape(ROOM_SIZE[0], ROOM_SIZE[1], 50, 50)
@@ -76,28 +74,10 @@ def F(source):  # source shape [-1, 100]
         except:
             E_min, E_max, E_avg = 0, 1e-3, 1e-3
 
-        # Heighter is better (between 0 to 1)
-        # try:
-        #     Lum = np.append(Lum, E_avg / (180 * led))
-        # except:
-        #     Lum = np.append(Lum, 0)
-        # led_gap = np.append(led_gap, LED_fun(cur=led, tar=led_num))
         value_orig = np.append(value_orig, UIR_fun(Emin=E_min, Emean=E_avg))
     value = value_orig  # * 0.6
-    # Lum_value = ((Lum - np.min(Lum)) / (np.max(Lum) - np.min(Lum)))
-    # value += Lum_value * 0.1
-    # value[led_gap != 0] = 0
     gap_value = Lum_value = None
     print('E_min = %d, E_max = %d, E_avg = %d' % (E_min, E_max, E_avg))
-    # var = np.var(E)
-    # print(var)
-    # tmp = (np.max(led_gap) + 1) / (led_gap + 1)      # LED numbers gap
-    # gap_value = (tmp / np.max(tmp))
-    # value +=  gap_value * 0.3
-
-    # if False in (value <= 1):
-    #     print(value)
-    # assert False not in (value <= 1)
 
     return value, value_orig, Lum_value, gap_value  # to find the maximum of this function
 

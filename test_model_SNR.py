@@ -234,6 +234,5 @@ dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
 # li = [21, 71, 27, 77]
 # for each in li:
 #     dna[0][each] = 1
-# id_num = np.load('room_result_SNR/log.npy')
 id_num = 12
 plotting(dna, id_num)
