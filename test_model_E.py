@@ -27,7 +27,9 @@ E_value_data = np.array([])
 for i in range(ROOM_SIZE[0]):
     for j in range(ROOM_SIZE[1]):
         E_value_data = np.append(E_value_data,
-                                 np.load(r'E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j))))
+                                 np.load(r'E_value_data'
+                                         # r'_onetime_reflection'
+                                         r'/E_value_%s.npy' % (str(i) + str(j))))
 E_value_data = E_value_data.reshape(ROOM_SIZE[0], ROOM_SIZE[1], 50, 50)
 
 # id_num = 19
@@ -98,6 +100,7 @@ def plotting(DNA, gen):
 
     for k in range(len(xt)):
         E += E_value_data[xt[k]][yt[k]]
+    # print(E)
     E *= nLed * nLed * room_mut
 
     # # adding some test
@@ -139,5 +142,5 @@ nd = 9 - d
 dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
 # dna[0][22] = dna[0][77] = dna[0][27] = dna[0][63] = 1
 # dna[0][22] = dna[0][72] = dna[0][57] = 1
-# dna[0][00] = 1
+# dna[0][22] = 1
 plotting(dna, 0)

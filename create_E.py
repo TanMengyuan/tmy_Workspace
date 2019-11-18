@@ -48,4 +48,7 @@ for i in range(len(xt)):
         E = (I0 * cosTetha * np.cos(np.deg2rad(tetha)) ** m) / np.square(d)
         np.save(r'E_value_data/E_value_%s.npy' % (str(i) + str(j)), E.T)
 
+        # if i == 2 and j == 2:
+        #     print(np.cos(np.deg2rad(tetha)))
+
 print('Finish.')
