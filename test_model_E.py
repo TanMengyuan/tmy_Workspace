@@ -28,7 +28,7 @@ for i in range(ROOM_SIZE[0]):
     for j in range(ROOM_SIZE[1]):
         E_value_data = np.append(E_value_data,
                                  np.load(r'E_value_data'
-                                         # r'_onetime_reflection'
+                                         r'_onetime_reflection'
                                          r'/E_value_%s.npy' % (str(i) + str(j))))
 E_value_data = E_value_data.reshape(ROOM_SIZE[0], ROOM_SIZE[1], 50, 50)
 
