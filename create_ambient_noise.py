@@ -55,13 +55,13 @@ for i in [0, len(xt) - 1]:
         d = np.sqrt(np.square(xr - xt[i]) + np.square(yr - yt[j]) + np.square(htr))
         Ibg_reduce = (1 / np.square(d)) * Ibg
         ambient_noise = N_q * (2 * q * Ibg_reduce * I2 * B)
-        np.save(r'ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j)), ambient_noise.T)
+        np.save(r'./ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j)), ambient_noise.T)
 
 for i in range(len(xt)):
     for j in [0, len(yt) - 1]:
         d = np.sqrt(np.square(xr - xt[i]) + np.square(yr - yt[j]) + np.square(htr))
         Ibg_reduce = (1 / np.square(d)) * Ibg
         ambient_noise = N_q * (2 * q * Ibg_reduce * I2 * B)
-        np.save(r'ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j)), ambient_noise.T)
+        np.save(r'./ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j)), ambient_noise.T)
 
 print('Finish.')

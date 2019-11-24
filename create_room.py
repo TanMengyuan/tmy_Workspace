@@ -22,7 +22,7 @@ def plot_loc(room, room_id):
     plt.xlabel('X (m)')
     plt.ylabel('Y (m)')
     if is_saving:
-        plt.savefig("room_shape_fig/%s.jpg" % room_id)
+        plt.savefig("./room_shape_fig/%s.jpg" % room_id)
     # plt.pause(0.5)
 
 
@@ -77,6 +77,6 @@ for each in cut:
         room_id = str(id_num).zfill(3)
         plot_loc(datum, room_id)
         if is_saving:
-            np.save('room_data/%s.npy' % room_id, datum)
+            np.save('./room_data/%s.npy' % room_id, datum)
         id_num += 1
 # plt.ioff(); plt.show()

@@ -46,7 +46,7 @@ for i in range(len(xt)):
         d = np.sqrt(np.square(xr - xt[i]) + np.square(yr - yt[j]) + np.square(htr))
         cosTetha = htr / d
         E = (I0 * cosTetha * np.cos(np.deg2rad(tetha)) ** m) / np.square(d)
-        np.save(r'E_value_data/E_value_%s.npy' % (str(i) + str(j)), E.T)
+        np.save(r'./E_value_data/E_value_%s.npy' % (str(i) + str(j)), E.T)
 
         # if i == 2 and j == 2:
         #     print(np.cos(np.deg2rad(tetha)))

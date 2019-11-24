@@ -82,15 +82,15 @@ for i in range(len(xt)):
                     adding += tmp
 
         # check data at (2, 2)
-        if i == 2 and j == 2:
-            print(adding)
-            print(np.mean(E))
-            print(np.mean(adding))
-            print('{:.2f} %'.format(100 * np.mean(adding) / np.mean(E)))
+        # if i == 2 and j == 2:
+        #     print(adding)
+        #     print(np.mean(E))
+        #     print(np.mean(adding))
+        #     print('{:.2f} %'.format(100 * np.mean(adding) / np.mean(E)))
 
         E += adding
 
-        # np.save(r'E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j)) , E.T)
+        np.save(r'./E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j)), E.T)
 
     print(i, 'finish!')
 

@@ -47,7 +47,7 @@ Hn_value_data = np.array([])
 for i in range(ROOM_SIZE[0]):
     for j in range(ROOM_SIZE[1]):
         Hn_value_data = np.append(Hn_value_data,
-                                  np.load(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j))))
+                                  np.load(r'./Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j))))
 Hn_value_data = Hn_value_data.reshape(ROOM_SIZE[0], ROOM_SIZE[1], 50, 50)
 
 
