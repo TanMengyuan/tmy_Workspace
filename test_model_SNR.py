@@ -183,23 +183,25 @@ def plotting(DNA, id_num):
     # # ax.set_xlabel('X (m)')
     # # ax.set_ylabel('Y (m)')
 
-    # plt.subplot(121)
-    # plt.tick_params(direction='in')
-    # levels = np.hstack((np.linspace(np.min(SNR[SNR != 0]), 13.6 - (np.max(SNR) - 13.6) / 3, 3),
-    #                     np.linspace(13.6 + (np.max(SNR) - 13.6) / 4, np.max(SNR), 4))) \
-    #     if np.max(SNR) > 13.6 else np.linspace(0, np.max(SNR), 8)
-    # plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
-    # C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
-    # C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
+    plt.subplot(121)
+    plt.tick_params(direction='in')
+    levels = np.hstack((np.linspace(np.min(SNR[SNR != 0]), 13.6 - (np.max(SNR) - 13.6) / 3, 3),
+                        np.linspace(13.6 + (np.max(SNR) - 13.6) / 4, np.max(SNR), 4))) \
+        if np.max(SNR) > 13.6 else np.linspace(0, np.max(SNR), 8)
+    plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
+    C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
+    C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
     # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10, manual=True)
     # plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10, manual=True)
-    # plt.xlabel('Width /m')
-    # plt.ylabel('Length /m')
-    # plt.title('SNR /dB  Effect Area: {0} %'.format(round(round(ratio, 4) * 100, 2)))
-    #
-    # plt.subplot(122)
-    # plt.scatter(x, y)
-    # plt.scatter(x, y, c='gray')
+    plt.clabel(C, fmt='%.1f', inline=True, fontsize=10)
+    plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10)
+    plt.xlabel('Width /m')
+    plt.ylabel('Length /m')
+    plt.title('SNR /dB  Effect Area: {0} %'.format(round(round(ratio, 4) * 100, 2)))
+
+    plt.subplot(122)
+    plt.scatter(x, y)
+    plt.scatter(x, y, c='gray')
     plt.tick_params(direction='in')
     plt.scatter(room_xx, room_yy, s=[1200], marker='s', c='gray')
     # plt.scatter(win_xx, win_yy, s=[1200], marker='s', c='blue', alpha=0.6, hatch='/')
@@ -226,7 +228,7 @@ def plotting(DNA, id_num):
 
 dna = np.zeros((1, 100))
 # dna = np.ones((1, 100))
-d = 1
+d = 2
 nd = 9 - d
 dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
 # li = [27, 42, 75]
