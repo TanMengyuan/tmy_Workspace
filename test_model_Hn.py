@@ -67,7 +67,7 @@ def plotting(DNA):
 dna = np.zeros((1, 100))
 d = 2
 nd = 9 - d
-# dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
-one = [27, 77, 52]
-dna[0][one] = 1
+dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
+# one = [27, 77, 52]
+# dna[0][one] = 1
 plotting(dna)

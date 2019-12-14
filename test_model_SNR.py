@@ -14,7 +14,7 @@ import scipy.signal
 hparams_justify = 1
 # hparams_justify = 4 / 3
 
-plt.figure(figsize=(6, 6))  # set the figure size
+plt.figure(figsize=(12, 6))  # set the figure size
 # plt.figure(figsize=(12, 6))  # set the figure size
 ROOM_SIZE = np.array([10, 10])
 DNA_SIZE = ROOM_SIZE[0] * ROOM_SIZE[1]  # DNA length
@@ -87,7 +87,8 @@ def mini_plot(array):
 def plotting(DNA, id_num):
     room_id = str(id_num).zfill(3)
     room = np.load('room_data/%s.npy' % room_id)
-    room = np.ones((10, 10))
+    print(np.rot90(room))
+    # room = np.ones((10, 10))
     room_area = len(np.where(room == 1)[0])
     repeat_arr = np.ones(10, dtype=np.int) * 5
     room_mut = np.repeat(room, repeat_arr, axis=0)
@@ -188,24 +189,24 @@ def plotting(DNA, id_num):
     levels = np.hstack((np.linspace(np.min(SNR[SNR != 0]), 13.6 - (np.max(SNR) - 13.6) / 3, 3),
                         np.linspace(13.6 + (np.max(SNR) - 13.6) / 4, np.max(SNR), 4))) \
         if np.max(SNR) > 13.6 else np.linspace(0, np.max(SNR), 8)
-    plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
-    C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
-    C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
+    # plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
+    # C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
+    # C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
     # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10, manual=True)
     # plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10, manual=True)
-    plt.clabel(C, fmt='%.1f', inline=True, fontsize=10)
-    plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10)
+    # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10)
+    # plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10)
     plt.xlabel('Width /m')
     plt.ylabel('Length /m')
     plt.title('SNR /dB  Effect Area: {0} %'.format(round(round(ratio, 4) * 100, 2)))
 
     plt.subplot(122)
-    plt.scatter(x, y)
-    plt.scatter(x, y, c='gray')
+    # plt.scatter(x, y)
+    # plt.scatter(x, y, c='gray')
     plt.tick_params(direction='in')
     plt.scatter(room_xx, room_yy, s=[1200], marker='s', c='gray')
     # plt.scatter(win_xx, win_yy, s=[1200], marker='s', c='blue', alpha=0.6, hatch='/')
-    plt.scatter(win_xx, win_yy, s=[1077], marker='s', c='gray', alpha=0.6, hatch='/')
+    # plt.scatter(win_xx, win_yy, s=[1077], marker='s', c='gray', alpha=0.6, hatch='/')
     plt.xlim(0, 5)
     plt.ylim(0, 5)
     plt.xlabel('Width /m')
@@ -236,5 +237,5 @@ dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
 # li = [21, 71, 27, 77]
 # for each in li:
 #     dna[0][each] = 1
-id_num = 12
+id_num = 13
 plotting(dna, id_num)
