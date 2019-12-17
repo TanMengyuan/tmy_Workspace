@@ -56,6 +56,7 @@ pool2 = tf.layers.max_pooling2d(conv2, 1, 1)  # -> (5, 5, 32)
 flat = tf.reshape(pool2, [-1, 5 * 5 * 32])  # -> (5*5*32, )
 y = tf.layers.dense(flat, 100)  # output layer
 
+# Linear part
 # W = tf.Variable(tf.zeros((100, 100)))
 # b = tf.Variable(tf.zeros(100))
 # # y = tf.nn.relu(tf.matmul(x, W) + b)
