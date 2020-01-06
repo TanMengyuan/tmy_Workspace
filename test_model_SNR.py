@@ -49,21 +49,21 @@ E_value_data = np.array([])
 for i in range(ROOM_SIZE[0]):
     for j in range(ROOM_SIZE[1]):
         E_value_data = np.append(E_value_data,
-                                 np.load(r'E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j))))
+                                 np.load(r'./E_value_data_onetime_reflection/E_value_%s.npy' % (str(i) + str(j))))
         noise_value_data = np.append(noise_value_data,
-                                     np.load(r'noise_value_data/noise_value_%s.npy' % (str(i) + str(j))))
+                                     np.load(r'./noise_value_data/noise_value_%s.npy' % (str(i) + str(j))))
         first_arrive_data = np.append(first_arrive_data,
-                                      np.load(r'ISI_array_data/first_arrive_%s.npy' % (str(i) + str(j))))
+                                      np.load(r'./ISI_array_data/first_arrive_%s.npy' % (str(i) + str(j))))
         Hn_value_data = np.append(Hn_value_data,
-                                  np.load(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j))))
+                                  np.load(r'./Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j))))
         n_shot_noise_value_data = np.append(n_shot_noise_value_data,
-                                            np.load(r'n_shot_value_data/n_shot_value_%s.npy' % (str(i) + str(j))))
+                                            np.load(r'./n_shot_value_data/n_shot_value_%s.npy' % (str(i) + str(j))))
         n_thermal_noise_value_data = np.append(n_thermal_noise_value_data,
                                                np.load(
-                                                   r'n_thermal_value_data/n_thermal_value_%s.npy' % (str(i) + str(j))))
-        if os.path.isfile(r'ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j))):
+                                                   r'./n_thermal_value_data/n_thermal_value_%s.npy' % (str(i) + str(j))))
+        if os.path.isfile(r'./ambient_noise_value_data/ambient_noise_value_%s.npy' % (str(i) + str(j))):
             ambient_noise_value_data = np.append(ambient_noise_value_data,
-                                                 np.load(r'ambient_noise_value_data/ambient_noise_value_%s.npy' % (
+                                                 np.load(r'./ambient_noise_value_data/ambient_noise_value_%s.npy' % (
                                                              str(i) + str(j))))
         else:
             ambient_noise_value_data = np.append(ambient_noise_value_data, np.zeros((50, 50)))
@@ -87,7 +87,7 @@ def mini_plot(array):
 def plotting(DNA, id_num):
     room_id = str(id_num).zfill(3)
     room = np.load('room_data/%s.npy' % room_id)
-    print(np.rot90(room))
+    # print(np.rot90(room))
     # room = np.ones((10, 10))
     room_area = len(np.where(room == 1)[0])
     repeat_arr = np.ones(10, dtype=np.int) * 5
@@ -105,7 +105,7 @@ def plotting(DNA, id_num):
     win_xx, win_yy = [], []
 
     for i in range(0, 10):
-        N += ambient_noise_value_data[i][0]
+        # N += ambient_noise_value_data[i][0]
         win_xx.append(i / 2 + 0.25)
         win_yy.append(-0.1)
 
@@ -123,7 +123,7 @@ def plotting(DNA, id_num):
     E *= nLed * nLed * room_mut
     min_E = np.min(E[E > 0])
     amp = 300 / min_E
-    hparams_justify = amp
+    # hparams_justify = amp
     E *= amp
 
     # include_ISI = True
@@ -165,43 +165,24 @@ def plotting(DNA, id_num):
     print(Q)
     # mini_plot(Q)
 
-    # plt.subplot(121)
-    # plt.tick_params(direction='in')
-    # # plt.contourf(xr, yr, E.T, alpha=.75)
-    # # C = plt.contour(xr, yr, E.T, colors='black', linewidths=1)
-    # plt.contourf(xr, yr, E.T, alpha=.75)
-    # C = plt.contour(xr, yr, E.T, colors='black', linewidths=1)
-    # # plt.contourf(xr, yr, SNR.T, alpha=.75)
-    # # C = plt.contour(xr, yr, SNR.T, colors='black', linewidths=1)
-    # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10, manual=True)
-    # # plt.title('SNR (dB) Effect Area: {0} %'.format(round(round(ratio, 4) * 100, 2)))
-    # plt.title('Illuminance /lx')
-
-    # # plt.subplot(121)
-    # # fig = plt.gcf()
-    # # ax = fig.add_subplot(1, 2, 1, projection='3d')
-    # # ax.plot_surface(xr, yr, t_min.T, rstride=1, cstride=1, cmap=plt.get_cmap('rainbow'))
-    # # ax.set_xlabel('X (m)')
-    # # ax.set_ylabel('Y (m)')
-
     plt.subplot(121)
     plt.tick_params(direction='in')
     levels = np.hstack((np.linspace(np.min(SNR[SNR != 0]), 13.6 - (np.max(SNR) - 13.6) / 3, 3),
                         np.linspace(13.6 + (np.max(SNR) - 13.6) / 4, np.max(SNR), 4))) \
         if np.max(SNR) > 13.6 else np.linspace(0, np.max(SNR), 8)
-    # plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
-    # C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
-    # C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
+    plt.contourf(xr, yr, SNR.T, levels=levels, alpha=.75)
+    C = plt.contour(xr, yr, SNR.T, levels=levels, colors='black', linewidths=1)
+    C_ = plt.contour(xr, yr, SNR.T, levels=[np.min(SNR[SNR != 0]), 13.6], colors='black', linewidths=3)
     # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10, manual=True)
     # plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10, manual=True)
-    # plt.clabel(C, fmt='%.1f', inline=True, fontsize=10)
-    # plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10)
+    plt.clabel(C, fmt='%.1f', inline=True, fontsize=10)
+    plt.clabel(C_, fmt='%.1f', inline=True, fontsize=10)
     plt.xlabel('Width /m')
     plt.ylabel('Length /m')
     plt.title('SNR /dB  Effect Area: {0} %'.format(round(round(ratio, 4) * 100, 2)))
 
     plt.subplot(122)
-    # plt.scatter(x, y)
+    plt.scatter(x, y)
     # plt.scatter(x, y, c='gray')
     plt.tick_params(direction='in')
     plt.scatter(room_xx, room_yy, s=[1200], marker='s', c='gray')
@@ -231,11 +212,11 @@ dna = np.zeros((1, 100))
 # dna = np.ones((1, 100))
 d = 2
 nd = 9 - d
-dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
-# li = [27, 42, 75]
+# dna[0][d * 11] = dna[0][nd * 10 + d] = dna[0][d * 10 + nd] = dna[0][nd * 11] = 1
+li = [27, 41, 75]
 # li = [17, 42, 57, 82]
 # li = [21, 71, 27, 77]
-# for each in li:
-#     dna[0][each] = 1
+for each in li:
+    dna[0][each] = 1
 id_num = 13
 plotting(dna, id_num)

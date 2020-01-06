@@ -21,8 +21,9 @@ BATCH_SIZE = 5
 source_path = './room_data/'
 target_path = './room_result_SNR/revised_data/'
 # target_path = './room_result_SNR/'
-train_data, test_data = [], []
+train_data, test_data, demo_data = [], [], []
 sta_test = ['008', '010', '013', '014', '016', '018']
+demo_test = ['013']
 for each in os.listdir(target_path):
     match = re.search(pattern=r'\d{3}_out.npy', string=each)
     if match:
@@ -32,35 +33,40 @@ for each in os.listdir(target_path):
 for data_id in sta_test:
     test_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
 
+for data_id in demo_test:
+    for _ in range(BATCH_SIZE):
+        demo_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
+
+
 # Set neural network
 x = tf.placeholder("float", [None, 100])
 room_img = tf.reshape(x, [-1, 10, 10, 1])
 y_ = tf.placeholder("float", [None, 100])
 
 # CNN part
-conv1 = tf.layers.conv2d(  # shape (10, 10, 1)
-    inputs=room_img,
-    filters=16,
-    kernel_size=5,
-    strides=1,
-    padding='same',
-    activation=tf.nn.relu
-)  # -> (10, 10, 16)
-pool1 = tf.layers.max_pooling2d(
-    conv1,
-    pool_size=2,
-    strides=2,
-)  # -> (5, 5, 16)
-conv2 = tf.layers.conv2d(pool1, 32, 5, 1, 'same', activation=tf.nn.relu)  # -> (5, 5, 32)
-pool2 = tf.layers.max_pooling2d(conv2, 1, 1)  # -> (5, 5, 32)
-flat = tf.reshape(pool2, [-1, 5 * 5 * 32])  # -> (5*5*32, )
-y = tf.layers.dense(flat, 100)  # output layer
+# conv1 = tf.layers.conv2d(  # shape (10, 10, 1)
+#     inputs=room_img,
+#     filters=16,
+#     kernel_size=5,
+#     strides=1,
+#     padding='same',
+#     activation=tf.nn.relu
+# )  # -> (10, 10, 16)
+# pool1 = tf.layers.max_pooling2d(
+#     conv1,
+#     pool_size=2,
+#     strides=2,
+# )  # -> (5, 5, 16)
+# conv2 = tf.layers.conv2d(pool1, 32, 5, 1, 'same', activation=tf.nn.relu)  # -> (5, 5, 32)
+# pool2 = tf.layers.max_pooling2d(conv2, 1, 1)  # -> (5, 5, 32)
+# flat = tf.reshape(pool2, [-1, 5 * 5 * 32])  # -> (5*5*32, )
+# y = tf.layers.dense(flat, 100)  # output layer
 
 # Linear part
-# W = tf.Variable(tf.zeros((100, 100)))
-# b = tf.Variable(tf.zeros(100))
-# # y = tf.nn.relu(tf.matmul(x, W) + b)
-# y = tf.nn.softmax(tf.matmul(x, W) + b)
+W = tf.Variable(tf.zeros((100, 100)))
+b = tf.Variable(tf.zeros(100))
+# y = tf.nn.relu(tf.matmul(x, W) + b)
+y = tf.nn.softmax(tf.matmul(x, W) + b)
 
 
 # Optimizer
@@ -90,13 +96,16 @@ with tf.name_scope('accuracy'):
     accuracy = tf.reduce_sum(tf.multiply(one_hot_y, one_hot_y_)) / (4 * BATCH_SIZE)
     tf.summary.scalar('accuracy', accuracy)
 
+with tf.name_scope('output'):
+    output = tf.nn.top_k(one_hot_y, 4).indices
+
 # Init
 init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 merged = tf.summary.merge_all()
 
-writer = tf.summary.FileWriter("./logs/", sess.graph)
+# writer = tf.summary.FileWriter("./logs/", sess.graph)
 
 
 def next_batch(batch_size, list_):
@@ -117,12 +126,15 @@ def build_test_batch(list_):
 
 
 test_batch_xs, test_batch_ys = build_test_batch(test_data)
+demo_xs, demo_ys = build_test_batch(demo_data)
 
 for i in range(10000):
     batch_xs, batch_ys = next_batch(BATCH_SIZE, train_data)
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
     if i % 100 == 0:
         _, res = sess.run([accuracy, merged], feed_dict={x: batch_xs, y_: batch_ys})
-        writer.add_summary(summary=res, global_step=i)
-        print('step: %d' % i, sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}))
+        # writer.add_summary(summary=res, global_step=i)
+        # print('step: %d' % i, sess.run(accuracy, feed_dict={x: batch_xs, y_: batch_ys}))
+        # print('step: %d' % i, sess.run(output, feed_dict={x: test_batch_xs, y_: test_batch_ys}))
         # print('step: %d' % i, sess.run(accuracy, feed_dict={x: test_batch_xs, y_: test_batch_ys}))
+        print('step: %d' % i, sess.run(output, feed_dict={x: batch_xs, y_: batch_ys}))

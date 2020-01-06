@@ -13,7 +13,7 @@ tethaHalf = np.deg2rad(60)
 m = np.int(- np.log(2) / np.log(np.cos(tethaHalf)))
 I0 = 0.73
 FOV = np.deg2rad(60)
-Rho = 0.8  # Spectral reflectance of plaster wall
+Rho = 0.2  # Spectral reflectance of plaster wall
 Ar = 1e-4
 n = 1.5
 nLed = 60
@@ -84,16 +84,16 @@ for i in range(len(xt)):
                     adding += tmp
 
         # Testing part
-        # if i == 2 and j == 2:
+        # if i == 5 and j == 5:
         #     print(adding)
         #     print(np.mean(adding))
         #     print(np.mean(Hn))
         #     print('{:.2f} %'.format(100 * np.mean(adding) / np.mean(Hn)))
-        #     plotting(xr, yr, adding)
-        #
-        # Hn += adding
+        #     # plotting(xr, yr, adding)
 
-        # np.save(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j)), Hn.T)
+        Hn += adding
+
+        np.save(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j)), Hn.T)
 
     print('Finish', i)
 
