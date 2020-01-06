@@ -44,16 +44,19 @@ target_path = './NN_data/out_data/'
 train_data, test_data = [], []
 test_ratio = 1.
 sta_test = ['000', '010', '027', '037', '044', '056']
+# sta_test = ['013', '013', '013', '013', '013', '013']
+
 for data_id in sta_test:
     test_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
+
 for each in os.listdir(target_path):
     match = re.search(pattern=r'\d{3}_out.npy', string=each)
     if match:
         data_id = match.group(0)[:3]
-        if np.random.randn() < test_ratio and data_id not in sta_test:
+        if np.random.randn() <= test_ratio and data_id not in sta_test:
             train_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
-        else:
-            test_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
+        # else:
+        #     test_data.append([source_path + data_id + '.npy', target_path + data_id + '_out.npy'])
 
 x_train, y_train = np.array([]), np.array([])
 for source, target in train_data:
@@ -100,24 +103,25 @@ for epoch in range(EPOCH):
     time_saver.append(round(end_time - start_time, 6) * 1e3)
 
     if epoch % 100 == 0:
-        print("Epoch: {}".format(epoch))
-    #     for _, (test_x, test_y) in enumerate(test_loader):
-    #         y = model.forward(test_x)
-    #         k_num = []
-    #         for each in test_x:
-    #             k_num.append((torch.nonzero(each).size()[0] // 25) + 1)
-    #         out, out_ = [], []
-    #         for i in range(len(k_num)):
-    #             out.append(torch.topk(y[i], k_num[i], largest=True, sorted=True, out=None)[1])
-    #             out_.append(torch.topk(test_y[i], k_num[i], largest=True, sorted=True, out=None)[1])
-    #         acc = 0
-    #         for i in range(len(out)):
-    #             for j in range(out_[i].size()[0]):
-    #                 if out[i][j] in out_[i]:
-    #                     acc += 1
-    #         acc_ratio = round(acc / sum(k_num), 4)
-    #         acc_saver.append(acc_ratio)
-    #         print("Epoch: {} Accuracy: {}".format(epoch, acc_ratio))
+        # print("Epoch: {}".format(epoch))
+        for _, (test_x, test_y) in enumerate(test_loader):
+            y = model.forward(test_x)
+            k_num = []
+            for each in test_x:
+                k_num.append((torch.nonzero(each).size()[0] // 25) + 1)
+            out, out_ = [], []
+            for i in range(len(k_num)):
+                out.append(torch.topk(y[i], k_num[i], largest=True, sorted=True, out=None)[1])
+                out_.append(torch.topk(test_y[i], k_num[i], largest=True, sorted=True, out=None)[1])
+            acc = 0
+            # print(out)
+            for i in range(len(out)):
+                for j in range(out_[i].size()[0]):
+                    if out[i][j] in out_[i]:
+                        acc += 1
+            acc_ratio = round(acc / sum(k_num), 4)
+            acc_saver.append(acc_ratio)
+            print("Epoch: {} Accuracy: {}".format(epoch, acc_ratio))
 
 # Plot part
 # plt.plot(acc_saver)
@@ -127,5 +131,5 @@ plt.show()
 # Save part
 # save = pd.DataFrame(acc_saver)
 # save.to_csv("./logs/acc_.csv")
-save = pd.DataFrame(time_saver)
-save.to_csv("./logs/time.csv")
+# save = pd.DataFrame(time_saver)
+# save.to_csv("./logs/time.csv")
