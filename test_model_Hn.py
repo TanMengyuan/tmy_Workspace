@@ -44,6 +44,7 @@ def plotting(DNA):
         print(np.mean(Pt * Hn_value_data[xt[k]][yt[k]]))
     print('Pr = {}'.format(np.mean(Pr)))
     print(Pr)
+    print(np.mean(Pr))
     Pr = 10 * np.log10(Pr * 1e3)
     print('Min: {:.1f}dBm, Max: {:.1f}dBm, Mean:{:.1f}dBm'.format(np.min(Pr), np.max(Pr), np.mean(Pr)))
     Pr[np.isinf(Pr)] = -1e1

@@ -84,16 +84,16 @@ for i in range(len(xt)):
                     adding += tmp
 
         # Testing part
-        # if i == 5 and j == 5:
-        #     print(adding)
-        #     print(np.mean(adding))
-        #     print(np.mean(Hn))
-        #     print('{:.2f} %'.format(100 * np.mean(adding) / np.mean(Hn)))
-        #     # plotting(xr, yr, adding)
+        if i == 2 and j == 2:
+            print(adding)
+            print(np.mean(adding))
+            print(np.mean(Hn))
+            print('{:.2f} %'.format(100 * np.mean(adding) / np.mean(Hn)))
+            # plotting(xr, yr, adding)
 
         Hn += adding
 
-        np.save(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j)), Hn.T)
+        # np.save(r'Hn_value_data/Hn_value_%s.npy' % (str(i) + str(j)), Hn.T)
 
     print('Finish', i)
 
