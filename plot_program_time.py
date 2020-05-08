@@ -6,7 +6,6 @@
 """
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 
 
 def smooth(arr, weight=0.5):
@@ -19,10 +18,21 @@ def smooth(arr, weight=0.5):
     return smoothed
 
 
-time_saver = np.load("time_saver.npy")
-times = smooth(time_saver)
+time_saver_GA = np.load("time_saver.npy")
+time_saver_DL = np.load("time_saver_DL.npy")
+# time_saver_DL = np.load("time_saver_DL_part.npy")
+time_saver_GA *= 1e3
+print(time_saver_DL)
+times_GA = smooth(arr=time_saver_GA, weight=0.5)
+times_DL = smooth(arr=time_saver_DL, weight=0.1)
+
+
 plt.tick_params(direction='in')
 plt.xlabel('Step')
 plt.ylabel('Time /s')
-plt.plot(times)
+plt.ylim(1e0, 1e5)
+plt.semilogy(times_DL)
+# plt.semilogy(times_GA)
+
+# plt.plot(times)
 plt.show()

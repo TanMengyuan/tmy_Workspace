@@ -125,6 +125,7 @@ for epoch in range(EPOCH):
 
 # Plot part
 # plt.plot(acc_saver)
+np.save("time_saver_DL.npy", time_saver)
 plt.plot(time_saver)
 plt.show()
 

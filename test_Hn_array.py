@@ -18,6 +18,7 @@ dt = T_half / 100
 t_array = np.linspace(0, 2 * T - dt, num_of_dt) * 1e9  # for plotting
 
 array = Hn_array[1][1] / np.max(Hn_array[1][1])
+array = np.append(0, array)[:200]
 plt.tick_params(direction='in')
 # plt.plot(t_array[1:], array[1:], c='red')
 plt.plot(t_array[:], array[:])
